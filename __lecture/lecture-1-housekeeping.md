@@ -19,11 +19,21 @@ in App (at src/index.js:31)
 In the last lecture, we saw **default exports**
 
 ```js
+const items = [
+  { id: '123', text: 'item1'},
+  { id: '234', text: 'item2'}
+]
+
+const Bacon = ({items})=> (
+  {items.map(item => <li key={`id${item.text.replace(' ', '-')}`}>{item.text}</li>)}
+);
+
+
 function Button(props) {
   ✂️
 }
 
-export default Button;
+export default Button;  // default can only add one.  acts as though you are importing the file
 ```
 
 ```js
@@ -42,7 +52,10 @@ export const logOut = () => { ✂️ };
 ```
 
 ```js
-import { logIn, logOut } from '../../authentication-utils.js';
+import { signUp, logIn, logOut } from '../../authentication-utils.js';
+
+// import utils from '../../authentication-utils.js';
+// utils.signUp
 ```
 
 ---
@@ -85,6 +98,10 @@ export const MAGIC_NUMBER = 123;
 ```js
 // src/index.js
 import MAGIC_NUMBER from './data';
+// above does not work.  Not defualt, need {}
+import { MAGIC_NUMBER } from './data';
+// or 
+import default MAGIC_NUMBER from './data';
 ```
 
 ---
@@ -102,6 +119,23 @@ export default data;
 ```js
 // src/index.js
 import {data, users} from './data';
+// above is overboard.  Users does not need to be there
+// change it to:
+const users = [];
+const sessions = [];
+
+const data = { users, sessions };
+
+export default data;
+
+import {data} from './data';
+
+// or 
+export const users = [];
+export const sessions = [];
+
+import {users} from './data';
+
 ```
 
 ---
@@ -115,6 +149,22 @@ export default const baseball = '⚾️';
 ```js
 // src/index.js
 import baseball from './data';
+
+
+// above does not work.  Can't define something in the same line as an export
+// below does
+
+// src/data.js
+export default '⚾️';
+
+// src/index.js
+import baseball from './data';
+
+
+console.log(baseball);  // will work inside function App(props) {
+//
+//}
+
 ```
 
 ---

@@ -14,8 +14,9 @@ import React from 'react';
 const App = ({ user, data }) => {
   // Error:
   return (
-    <Header user={user} />
-    <Content data={data} />
+    
+      <Header user={user} />
+      <Content data={data} />
   )
 }
 ```

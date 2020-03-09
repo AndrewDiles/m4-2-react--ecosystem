@@ -103,7 +103,8 @@ function App(props) {
           <Route exact path="/shop/:itemId">
             <ItemDetails />
           </Route>
-          <Route>
+          <Route> 
+          // Catches all that do not match
             <ErrorPage />
           </Route>
         </Switch>
@@ -174,6 +175,7 @@ const ItemDetails = () => {
   // `useParams` is the hook.
   // Hooks always start with `use`.
   const {itemId} = useParams();
+  //  const itemId = useParams().itemid ?
 
   return <h3>Item ID: {itemId}</h3>
 };

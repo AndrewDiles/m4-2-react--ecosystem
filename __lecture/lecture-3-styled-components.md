@@ -10,17 +10,24 @@
 ```jsx
 import styled from 'styled-components';
 
-const Button = styled.button`
+const StyledButton = styled.button`  // everything inside the backticks is written as css
   background: blueviolet;
+  // or background: ${props => props.isActive ? 'blue' : 'green'};
   border: none;
   padding: 16px 32px;
   color: white;
   font-size: 21px;
   border-radius: 2px;
+  &:hover {
+    transform: scale(1.1);
+  }
+  @media screen and (min-width: 700px) {
+    background:red;
+  }
 `;
 
 ReactDOM.render(
-  <Button>Hello World</Button>,
+  <StyledButton isActive={true} id='button1'>Hello World</StyledButton>,
   document.querySelector('#root')
 );
 ```
@@ -108,7 +115,25 @@ function App(props) {
     </div>
   )
 }
+
+// becomes: 
+
+import styled from 'styled-components';
+const StyledWrapper = style.div`
+  margin: 0 auto;
+  height: 300px;
+`;
+
+function App(props) {
+  return (<StyledWrapper>
+        Hello World
+        </StyledWrapper>
+  )
+}
+
 ```
+
+
 
 ---
 
@@ -143,6 +168,69 @@ function IconButton(props) {
     </button>
   )
 }
+
+//becomes
+import styled from 'styled-components';
+const styledButton = style.button`
+  color: tomato;
+  font-weight: bold;
+  padding: 20px;
+
+&:hover,
+&:focus {
+  transform: translateY(-3px);
+}
+`;
+const styledi = style.i`
+  width: 32px;
+  height: 32px;
+`;
+
+function IconButton(props) {
+  return (
+    <styledButton>
+      <styledi>
+        {props.icon}
+      </styledi>
+      <styledi>
+        {props.children}
+      </styledi>
+    </styleButton>
+  )
+}
+
+
+//or 
+
+import styled from 'styled-components';
+const styledButton = style.button`
+  color: tomato;
+  font-weight: bold;
+  padding: 20px;
+
+&:hover,
+&:focus {
+  transform: translateY(-3px);
+}
+.i {
+  width: 32px;
+  height: 32px;
+}
+`;
+
+function IconButton(props) {
+  return (
+    <styledButton>
+      <i className='icon'>
+        {props.icon}
+      </i>
+      <i className = ''>
+        {props.children}
+      </i>
+    </styleButton>
+  )
+}
+
 ```
 
 ---

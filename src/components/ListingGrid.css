@@ -1,0 +1,34 @@
+.fruitContainer {
+border-radius: 10px;
+/* border-color: rgb(221, 221, 221); */
+/* box-shadow: 10% black; */
+background-color: white;
+}
+.fruitContainer:hover {
+    background-color: rgb(255, 240, 255);
+}
+
+.fruitImage {
+    border-radius: 10px;
+    border-color: white;
+    min-width: 100px;
+    min-height: 100px;
+    width: 50%;
+    height: 50%;
+    margin-top: 5%;
+}
+.fruitImage:hover {
+    transform: Scale(1.2);
+}
+
+.nameP {
+    margin: 5% 0% 0;
+    font-weight: 900;
+    font-size: 1.3em;
+}
+.latinP {
+    padding: 5% 0;
+    font-style: italic;
+    font-size: 0.8em;
+    color: gray;
+}
